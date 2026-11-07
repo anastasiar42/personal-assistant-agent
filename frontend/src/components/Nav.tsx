@@ -6,6 +6,7 @@ import { setToken } from "@/lib/api";
 
 const TABS = [
   { href: "/today", label: "Today" },
+  { href: "/tomorrow", label: "Tomorrow" },
   { href: "/plan", label: "Week" },
   { href: "/promises", label: "Promises" },
   { href: "/goals", label: "Goals" },
