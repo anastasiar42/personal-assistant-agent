@@ -87,6 +87,12 @@ def today_plan(user: User = Depends(current_user), db: Session = Depends(get_db)
                      .order_by(Plan.id.desc()).limit(1))
 
 
+@router.get("/tomorrow", response_model=PlanOut | None)
+def tomorrow_plan(user: User = Depends(current_user), db: Session = Depends(get_db)):
+    return db.scalar(select(Plan).where(Plan.user_id == user.id, Plan.date == tomorrow_for(user))
+                     .order_by(Plan.id.desc()).limit(1))
+
+
 @router.post("/{plan_id}/review", response_model=PlanOut)
 def save_review(plan_id: int, body: ReviewIn, user: User = Depends(current_user), db: Session = Depends(get_db)):
     plan = _plan(db, user, plan_id)

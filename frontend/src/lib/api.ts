@@ -114,6 +114,8 @@ export type PlanSummary = {
 };
 
 export const latestPlan = () => api<Plan | null>("/plans/latest");
+export const todayPlan = () => api<Plan | null>("/plans/today");
+export const tomorrowPlan = () => api<Plan | null>("/plans/tomorrow");
 
 export async function focusPlan(): Promise<Plan | null> {
   const today = await api<Plan | null>("/plans/today");

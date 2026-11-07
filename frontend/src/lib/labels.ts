@@ -26,7 +26,7 @@ export function minutesOf(iso: string) {
   return h * 60 + m;
 }
 
-function isoDate(d: Date) {
+export function isoDate(d: Date) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 

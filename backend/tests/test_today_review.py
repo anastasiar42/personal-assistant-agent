@@ -84,3 +84,11 @@ def test_removed_item_counts_as_progress():
     client.patch(f"/plans/{pid}/items/{meal['id']}", json={"status": "removed"}, headers=h)
     r = client.post("/plans", headers=h)
     assert r.status_code == 409 and "1 removed" in r.json()["detail"]
+
+
+def test_tomorrow_endpoint_returns_tomorrows_plan_only():
+    h = _auth("tomorrow@example.com")
+    assert client.get("/plans/tomorrow", headers=h).json() is None
+    pid = client.post("/plans", headers=h).json()["id"]
+    assert client.get("/plans/tomorrow", headers=h).json()["id"] == pid
+    assert client.get("/plans/today", headers=h).json() is None
