@@ -124,7 +124,7 @@ export default function DayView({ label, date, load }: Props) {
               <article className="now sheet">
                 <h2>That&apos;s the day.</h2>
                 <p className="muted">
-                  Everything is done or past. <Link href="/review">Wrap up the day</Link>.
+                  Everything is done or past. <Link href={`/review?plan=${plan.id}`}>Wrap up the day</Link>.
                 </p>
               </article>
             )}
